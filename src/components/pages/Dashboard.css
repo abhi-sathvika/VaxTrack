@@ -1,0 +1,55 @@
+.dashboard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.title {
+    font-size: 2rem;
+    margin: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgba(2, 22, 5, 0.938);
+}
+.page{
+    background-color:aquamarine;
+}
+.table-wrapper{
+  width:100%;
+}
+.table {
+    display: block;
+    overflow: hidden;
+    table-layout: auto;
+
+    margin: auto;
+    overflow-x: auto;
+    width: 200em;
+    border-collapse: collapse;
+  }
+  
+  .table th, .table td {
+    border: 1px solid #ddd;
+    padding: 0.8rem;
+    text-align: left;
+  }
+  
+  .table thead {
+    background-color: #f2f2f2;
+  }
+  
+  .table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  .dropdownsection
+  {
+    width:80%;
+    display:block;
+  }
+.dropdown{
+  margin: 4rem;
+  
+  font-size: large;
+}
