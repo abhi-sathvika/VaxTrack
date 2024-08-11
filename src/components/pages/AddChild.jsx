@@ -45,6 +45,7 @@ export function AddChild(){
     return(
         <div>
         <form onSubmit={handleSubmit} className='input-form'>
+          <h2>Provide your child details</h2>
           <ul>
             <input
               type="text" className="input-box" value={firstName}
