@@ -17,12 +17,15 @@ export function Home() {
 
       const userObject = jwtDecode(response.credential);
       localStorage.setItem('user', JSON.stringify(userObject));
-      const { name, sub, email } = userObject;
+      const { name, sub, email,family_name, given_name } = userObject;
       setUserEmail(email)
       setUsername(name)
       window.localStorage.setItem("userEmail", email)
       window.localStorage.setItem("userId", sub)
       window.localStorage.setItem("userName", name)
+      window.localStorage.setItem("firstName", given_name)
+      window.localStorage.setItem("lastName", family_name)
+      
       navigate('/dashboard')
   }
   return(

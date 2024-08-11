@@ -15,6 +15,8 @@ export function AddChild(){
   const userName = window.localStorage.getItem('userName')
   const userId = window.localStorage.getItem('userId');
   const [children, setChildren] = useState([]);
+  const [vaccineStatus, setVaccineStatus] = useState([]);
+  
   const navigate = useNavigate()
   const child = {
     type:'Child',
@@ -34,6 +36,8 @@ export function AddChild(){
             {
 
             setChildren(...children,child);
+            axios.get(`https://vaccinationtrackerapi-gubzfrauhvhsbagj.southeastasia-01.azurewebsites.net/api/vaccinestatus/parent/`+userId).then(responseVaccineStatus => {
+              setVaccineStatus(responseVaccineStatus.data);}).catch(error =>{console.error('FetchVaccineStatusError: ', error)});
             navigate('/dashboard');
           }
           ).catch(error =>{console.error('createChildError: ', error)});

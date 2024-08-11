@@ -13,6 +13,8 @@ export function Dashboard (){
   const userEmail = window.localStorage.getItem('userEmail')
   const userName = window.localStorage.getItem('userName')
   const userId = window.localStorage.getItem('userId');
+  const firstName = window.localStorage.getItem('firstName')
+  const lastName = window.localStorage.getItem('lastName');
   const navigate = useNavigate()
   const handleButtonClick = ()=>{
     return(
@@ -25,15 +27,47 @@ export function Dashboard (){
 
       }
       setUser(responseUser.data);
-    }).catch(error =>{console.error('FetchUserError: ', error)});
+    }).catch(error =>{
+      console.error('FetchUserError: ', error)
+
+      const newUser = {
+        type: "Parent",
+        entityType:"User",
+        parentId:"",
+        firstName : firstName,
+        lastName: lastName,
+        id:userId,
+        userEmail:userEmail,
+        loginProvider:"Google",
+        country:"US"
+      };
+      axios.post(`https://vaccinationtrackerapi-gubzfrauhvhsbagj.southeastasia-01.azurewebsites.net/api/user/parent`, newUser).then(responseNewUser =>{
+        if(responseNewUser.data ===null){
+          console.log("CreateNewParentFailed:");
+        }
+        setUser(responseNewUser.data); 
+        navigate('/addchild')
+      }).catch(error =>{
+        console.error('CreateNewParent', error)
+      })
+    });
 
     axios.get(`https://vaccinationtrackerapi-gubzfrauhvhsbagj.southeastasia-01.azurewebsites.net/api/user/children/email/` + userEmail).then(responseChildren => {
       setChildren(responseChildren.data);
       setSelectedChild(responseChildren.data[0]);
-      }).catch(error =>{console.error('FetchChildrenError: ', error)});
+      if(responseChildren.data[0] === undefined){
+        console.log("No children")
+        navigate('/addchild')
+      }else{
+        axios.get(`https://vaccinationtrackerapi-gubzfrauhvhsbagj.southeastasia-01.azurewebsites.net/api/vaccinestatus/parent/`+userId).then(responseVaccineStatus => {
+          setVaccineStatus(responseVaccineStatus.data);}).catch(error =>{console.error('FetchVaccineStatusError: ', error)});
+      }
 
-    axios.get(`https://vaccinationtrackerapi-gubzfrauhvhsbagj.southeastasia-01.azurewebsites.net/api/vaccinestatus/parent/`+userId).then(responseVaccineStatus => {
-      setVaccineStatus(responseVaccineStatus.data);}).catch(error =>{console.error('FetchVaccineStatusError: ', error)});
+      }).catch(error =>{console.error('FetchChildrenError: ', error)
+        
+      });
+
+
     
   },[]);
 
