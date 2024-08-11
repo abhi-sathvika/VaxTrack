@@ -14,12 +14,10 @@ export function Home() {
 
   axios.defaults.withCredentials = true;
   const handleGoogleSuccess = (response) => {
-      console.log(response);
+
       const userObject = jwtDecode(response.credential);
-      console.log(userObject);
       localStorage.setItem('user', JSON.stringify(userObject));
       const { name, sub, email } = userObject;
-      console.log(name, sub, email);
       setUserEmail(email)
       setUsername(name)
       window.localStorage.setItem("userEmail", email)

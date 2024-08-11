@@ -8,7 +8,7 @@ function VaccineStatusTable(props) {
     const userId = window.localStorage.getItem('userId');
 useEffect(() =>{
     axios.get(`https://vaccinationtrackerapi-gubzfrauhvhsbagj.southeastasia-01.azurewebsites.net/api/vaccinestatus/parent/` + userId).then(responseVaccineStatus => {
-      console.log(responseVaccineStatus.data);
+
       setVaccineStatus(responseVaccineStatus.data);}).catch(error =>{console.error('FetchVaccineStatusError: ', error)});
     
   },[]);
