@@ -5,4 +5,9 @@
     transform: translate(-50%, -50%);
     /* Additional styling */
   }
+  .addbutton{
+    margin: 4rem;
+    
+    font-size: large;
+  }
   

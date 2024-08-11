@@ -38,7 +38,7 @@ return (
     <h1 className="title">Add/update children details, {user.firstName}</h1>
   
     <div className="table-wrapper">
-      <button onClick={handleButtonClick}>Add Child</button>
+      <button className="addbutton" onClick={handleButtonClick}>Add Child</button>
       <table className="table">
         <thead>
           <tr>

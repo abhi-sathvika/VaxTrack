@@ -1,0 +1,14 @@
+.input-form{
+    max-width: 40%;
+    margin: auto;
+    margin-top: 50px;
+    align-items: center;
+}
+.input-box{
+    margin: 10px;
+    font-size: large;
+}
+.submit-button{
+    margin: 10px;
+    font-size: large;
+}
